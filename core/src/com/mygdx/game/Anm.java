@@ -12,7 +12,7 @@ public class Anm {
 
     public Anm(String name, int col, int row, Animation.PlayMode playMode) {
         img = new Texture(name);
-        img = new Texture("character.png");
+        img = new Texture("boy.jpg");
         TextureRegion region0 = new TextureRegion(img);
         int Xcnt = region0.getRegionWidth() / col;
         int Ycnt = region0.getRegionWidth() / row;
@@ -24,10 +24,10 @@ public class Anm {
                 region1[cnt++] = regions0[i][j];
             }
         }
-        anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 0.6f, region1);
+        anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, regions0[0]);
         anim.setFrameDuration(1 / 15f);
-        anim.setPlayMode(com.badlogic.gdx.graphics.g2d.Animation.PlayMode.LOOP_PINGPONG);
-        int a = 0;
+        anim.setPlayMode(playMode);
+
 
         time += Gdx.graphics.getDeltaTime();
     }
