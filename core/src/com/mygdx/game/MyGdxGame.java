@@ -4,38 +4,47 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MyGdxGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	int clck;
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("gamer.jpg");
-	}
+    SpriteBatch batch;
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 1, 1, 1);
+    int clck;
+    Anm animation;
+    boolean dir;
 
-		float x= Gdx.input.getX()-img.getWidth()/2;
-		float y= Gdx.graphics.getHeight()-Gdx.input.getY()-img.getHeight()/2;
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+    }
+        @Override
+        public void render() {
+            ScreenUtils.clear(1, 1, 1, 1);
 
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) clck++;
+            float x = Gdx.input.getX() - animation.getFrame().getRegionWidth() / 2;
+            float y = Gdx.graphics.getHeight() - Gdx.input.getY() - animation.getFrame().getRegionHeight() / 2;
 
-		Gdx.graphics.setTitle("Clicked " + clck+ " times");
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.draw(img, x,y);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
-}
+            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) clck++;
+
+            Gdx.graphics.setTitle("Clicked " + clck + " times");
+            if (Gdx.input.isKeyJustPressed(Input.Keys.L)) dir = true;
+            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) dir = false;
+            if (!animation.getFrame().isFlipX()) animation.getFrame().flip(true, false);
+            batch.begin();
+            //batch.draw(img, 0, 0);
+            //batch.draw(img, x, y);
+            batch.draw(animation.getFrame(), 0, 0);
+            batch.end();
+        }
+
+        @Override
+        public void dispose () {
+            batch.dispose();
+
+
+        }
+    }
+
