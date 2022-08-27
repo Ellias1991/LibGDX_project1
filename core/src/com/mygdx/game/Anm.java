@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Anm {
@@ -10,6 +11,8 @@ public class Anm {
     private Animation<TextureRegion> anim;
     float time;//внутреннее время анимации
 
+
+    float stateTime;
     public Anm(String name, int col, int row, Animation.PlayMode playMode) {
         img = new Texture(name);
         img = new Texture("boy.jpg");
