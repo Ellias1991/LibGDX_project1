@@ -10,17 +10,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Main;
 
-public class MenuScreen implements Screen {
+public class GameScreen implements Screen {
+
     private Main game;
     private SpriteBatch batch;
     private Texture img;
 
-    public MenuScreen(Main game) {
+    public GameScreen(Main game) {
         this.game = game;
         batch= new SpriteBatch();
-        img=new Texture("gamer");
-
+        img=new Texture("gamer2");
     }
+
 
     @Override
     public void show() {
@@ -29,15 +30,17 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLACK);
+
+        ScreenUtils.clear(Color.CHARTREUSE);
 
         batch.begin();
-        batch.draw(img, 0, 0);
+        batch.draw(img,0,0);
         batch.end();
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             dispose();
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new MenuScreen(game));
+
         }
     }
 
