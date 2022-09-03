@@ -30,7 +30,9 @@ public class Anm {
         //       }
         //   }
         atlas=new TextureAtlas("atlas/unnamed.atlas");
-      anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, atlas.findRegion("Ant run"));
+        anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, atlas.findRegion("Run"));
+        anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, atlas.findRegion("JumpUp"));
+        anim = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, atlas.findRegion("Hit"));
         anim.setFrameDuration(1 / 15f);
         anim.setPlayMode(playMode);
 
