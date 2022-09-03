@@ -6,10 +6,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Anm;
 import com.mygdx.game.Main;
 
 public class GameScreen implements Screen {
@@ -55,6 +58,10 @@ public class GameScreen implements Screen {
             game.setScreen(new MenuScreen(game));
 
         }
+
+
+
+
     }
 
     @Override
