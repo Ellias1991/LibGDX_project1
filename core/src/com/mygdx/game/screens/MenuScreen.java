@@ -7,6 +7,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Main;
 
@@ -14,12 +16,14 @@ public class MenuScreen implements Screen {
     private Main game;
     private SpriteBatch batch;
     private Texture img;
-
+    private Rectangle startRect;
+    private ShapeRenderer shapeRenderer;
     public MenuScreen(Main game) {
         this.game = game;
         batch= new SpriteBatch();
         img=new Texture("gamer.jpg");
-
+        startRect=new Rectangle(0,0,img.getWidth(),img.getHeight());
+        shapeRenderer=new ShapeRenderer();
     }
 
     @Override
@@ -35,12 +39,20 @@ public class MenuScreen implements Screen {
         batch.draw(img, 0, 0);
         batch.end();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-            dispose();
-            game.setScreen(new GameScreen(game));
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.GOLD);
+        shapeRenderer.rect(startRect.x, startRect.y, startRect.width, startRect.height);
+        shapeRenderer.end();
+
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+            int x = Gdx.input.getX();
+            int y = Gdx.graphics.getHeight()-Gdx.input.getY();
+            if (startRect.contains(x, y)) {
+                dispose();
+                game.setScreen(new GameScreen(game));
+            }
         }
     }
-
     @Override
     public void resize(int width, int height) {
 
@@ -63,6 +75,9 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
+      this.batch.dispose();
+      this.img.dispose();
+      this.shapeRenderer.dispose();
 
     }
 }

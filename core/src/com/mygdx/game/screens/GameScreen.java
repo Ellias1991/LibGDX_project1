@@ -7,6 +7,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Main;
 
@@ -15,11 +17,17 @@ public class GameScreen implements Screen {
     private Main game;
     private SpriteBatch batch;
     private Texture img;
+    private Rectangle startRect;
+    private ShapeRenderer shapeRenderer;
+
 
     public GameScreen(Main game) {
         this.game = game;
         batch= new SpriteBatch();
         img=new Texture("gamer2.jpg");
+        startRect=new Rectangle(0,0,img.getWidth(),img.getHeight());
+        shapeRenderer=new ShapeRenderer();
+
     }
 
 
@@ -36,6 +44,11 @@ public class GameScreen implements Screen {
         batch.begin();
         batch.draw(img,0,0);
         batch.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.GOLD);
+        shapeRenderer.rect(startRect.x, startRect.y, startRect.width, startRect.height);
+        shapeRenderer.end();
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             dispose();
@@ -66,6 +79,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        this.batch.dispose();
+        this.img.dispose();
 
     }
 }
