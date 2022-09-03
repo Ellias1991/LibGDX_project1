@@ -19,7 +19,7 @@ public class GameScreen implements Screen {
     public GameScreen(Main game) {
         this.game = game;
         batch= new SpriteBatch();
-        img=new Texture("gamer2");
+        img=new Texture("gamer2.jpg");
     }
 
 

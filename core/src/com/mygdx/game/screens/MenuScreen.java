@@ -18,7 +18,7 @@ public class MenuScreen implements Screen {
     public MenuScreen(Main game) {
         this.game = game;
         batch= new SpriteBatch();
-        img=new Texture("gamer");
+        img=new Texture("gamer.jpg");
 
     }
 
