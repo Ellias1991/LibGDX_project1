@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Anm;
@@ -25,6 +26,7 @@ public class GameScreen implements Screen {
     private Texture img;
     private OrthographicCamera camera;
     private TiledMap map;
+    private OrthogonalTiledMapRenderer mapRenderer;
     private Rectangle startRect;
     private ShapeRenderer shapeRenderer;
 
@@ -39,6 +41,7 @@ public class GameScreen implements Screen {
         startRect=new Rectangle(0,0,img.getWidth(),img.getHeight());
         shapeRenderer=new ShapeRenderer();
         map=tm.load("map/карта 1.tmx");
+        mapRenderer=new OrthogonalTiledMapRenderer(map);//указываем какую карту отрисовывать, метод,позволяющий отрисовать карту
 
     }
 
@@ -55,10 +58,12 @@ public class GameScreen implements Screen {
         ScreenUtils.clear(Color.CHARTREUSE);
 
         batch.setProjectionMatrix(camera.combined);
-
         batch.begin();
         batch.draw(img,0,0);
         batch.end();
+
+        mapRenderer.setView(camera);//установили вид
+        mapRenderer.render();///этот метод и метод выше позволяют отрисовать карту
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.GOLD);
